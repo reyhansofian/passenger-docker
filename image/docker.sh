@@ -3,6 +3,8 @@ set -e
 source /pd_build/buildconfig
 set -x
 
+header "Installing Docker..."
+
 echo "+ Removing Docker old versions (if any)"
 run apt-get remove docker docker-engine docker.io containerd runc
 
@@ -18,5 +20,10 @@ run add-apt-repository \
    $(lsb_release -cs) \
    stable"
 
-echo "+ Installing Docker"
+echo "+ Installing Docker engine"
 minimal_apt_get_install docker-ce
+
+echo "+ Add Docker to group"
+run usermod -aG docker jenkins
+
+run service docker start

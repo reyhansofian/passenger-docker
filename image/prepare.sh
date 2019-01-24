@@ -15,3 +15,9 @@ run usermod -L app
 run mkdir -p /home/app/.ssh
 run chmod 700 /home/app/.ssh
 run chown app:app /home/app/.ssh
+
+
+## Create user for jenkins
+run addgroup --gid 1000 jenkins
+run adduser --uid 1000 --gid 1000 --disabled-password --gecos "Jenkins" jenkins
+run usermod -L jenkins
