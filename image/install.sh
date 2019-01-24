@@ -13,10 +13,8 @@ if [[ "$ruby26" = 1 ]]; then run /pd_build/ruby-2.6.0.sh; fi
 if [[ "$jruby92" = 1 ]]; then run /pd_build/jruby-9.2.0.0.sh; fi
 if [[ "$python" = 1 ]]; then run /pd_build/python.sh; fi
 if [[ "$nodejs" = 1 ]]; then run /pd_build/nodejs.sh; fi
-if [[ "$redis" = 1 ]]; then run /pd_build/redis.sh; fi
-if [[ "$memcached" = 1 ]]; then run /pd_build/memcached.sh; fi
-
-# Must be installed after Ruby, so that we don't end up with two Ruby versions.
-run /pd_build/nginx-passenger.sh
+if [[ "$git" = 1 ]]; then run /pd_build/git.sh; fi
+if [[ "$docker" = 1 ]]; then run /pd_build/docker.sh; fi
+if [[ "$go" = 1 ]]; then run /pd_build/go.sh; fi
 
 run /pd_build/finalize.sh

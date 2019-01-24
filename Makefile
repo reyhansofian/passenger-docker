@@ -1,5 +1,6 @@
-NAME = phusion/passenger
-VERSION = 1.0.1
+NAME = computecoholic/docker-base-image
+VERSION = 1.0.0
+
 # Extra flags for docker build, usable via environment variable.
 # Example: `export EXTRA_BUILD_FLAGS=--no-cache; make build_all`
 EXTRA_BUILD_FLAGS?=
@@ -74,17 +75,18 @@ build_nodejs:
 build_full:
 	rm -rf full_image
 	cp -pR image full_image
-	echo ruby23=1 >> full_image/buildconfig
-	echo ruby24=1 >> full_image/buildconfig
-	echo ruby25=1 >> full_image/buildconfig
+	# echo ruby23=1 >> full_image/buildconfig
+	# echo ruby24=1 >> full_image/buildconfig
+	# echo ruby25=1 >> full_image/buildconfig
 	echo ruby26=1 >> full_image/buildconfig
-	echo jruby92=1 >> full_image/buildconfig
+	# echo jruby92=1 >> full_image/buildconfig
 	echo python=1 >> full_image/buildconfig
 	echo nodejs=1 >> full_image/buildconfig
-	echo redis=1 >> full_image/buildconfig
-	echo memcached=1 >> full_image/buildconfig
+	#echo git=1 >> full_image/buildconfig
+	echo docker=1 >> full_image/buildconfig
+	echo go=1 >> full_image/buildconfig
 	echo final=1 >> full_image/buildconfig
-	docker build $(EXTRA_BUILD_FLAGS) -t $(NAME)-full:$(VERSION) --rm full_image --no-cache
+	docker build $(EXTRA_BUILD_FLAGS) -t $(NAME)-full:$(VERSION) --rm=true --no-cache=true full_image
 
 tag_latest:
 	docker tag $(NAME)-customizable:$(VERSION) $(NAME)-customizable:latest
